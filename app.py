@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3
 
 import threading
 import atexit
@@ -7,7 +7,7 @@ import logging
 
 from time import sleep
 from flask import Flask, jsonify, request, Response, redirect
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from functions import *
 
@@ -70,8 +70,7 @@ if __name__ == '__main__':
 
     @app.route('/')
     def main_page():
-        return redirect('https://github.com/radium88/zi2mikrotik', 307)
-
+        return redirect('https://github.com/qqalexqq/zi2mikrotik', 307)
 
     @app.route('/banned_count')
     def count():
@@ -139,4 +138,3 @@ if __name__ == '__main__':
         return response
 
     app.run(host='0.0.0.0', port=3000, threaded=True)
-

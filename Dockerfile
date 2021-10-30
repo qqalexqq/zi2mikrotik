@@ -1,5 +1,5 @@
 # pre-build stage
-FROM python:3-alpine as base
+FROM python:3.8-alpine as base
 
 COPY requirements.txt /opt/
 WORKDIR /opt
@@ -13,7 +13,7 @@ RUN pip3 install wheel && pip3 wheel -w /tmp/wheels -r requirements.txt
 
 # ----------------------------
 # install stage
-FROM python:3-alpine
+FROM python:3.8-alpine
 
 RUN apk --no-cache add git
 
@@ -26,5 +26,7 @@ RUN git submodule update --depth 1
 
 RUN pip install --no-index --find-links=/tmp/wheels -r requirements.txt
 RUN rm -rfv /tmp/*
+
+RUN git config --global pull.rebase true
 
 CMD /opt/app.py

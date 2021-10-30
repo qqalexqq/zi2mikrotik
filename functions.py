@@ -3,8 +3,6 @@ import ipaddress
 import requests
 import logging
 
-from config import *
-
 
 def read_zi():
     with open('z-i/dump.csv', 'r', encoding="windows-1251") as f:
